@@ -1,0 +1,202 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User and personnel profile in OAS KKU",
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string",
+          "description": "Employee ID (e.g. OAS01)"
+        },
+        "orderNo": {
+          "type": "number",
+          "description": "Sequence order"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name with academic title"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position within OAS KKU"
+        },
+        "department": {
+          "type": "string",
+          "description": "Department or group name"
+        },
+        "departmentId": {
+          "type": "string",
+          "description": "Department ID"
+        },
+        "affiliationCode": {
+          "type": "string",
+          "description": "Affiliation unit code"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Sub-unit division"
+        },
+        "permission": {
+          "type": "string",
+          "description": "Permission role"
+        },
+        "systemRole": {
+          "type": "string",
+          "description": "System role in application"
+        },
+        "email": {
+          "type": "string",
+          "description": "KKU email address"
+        },
+        "avatarInitials": {
+          "type": "string",
+          "description": "Two letter Thai avatar initials"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "description": "Soft delete flag"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["employeeId", "name", "email", "createdAt", "updatedAt", "isDeleted"]
+    },
+    "Activity": {
+      "title": "Activity",
+      "description": "Conference, meeting or seminar event document",
+      "type": "object",
+      "properties": {
+        "activityId": {
+          "type": "string",
+          "description": "Activity primary key (e.g. OAS-ACT-2024-001)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Activity headline"
+        },
+        "description": {
+          "type": "string",
+          "description": "Activity objectives and description"
+        },
+        "date": {
+          "type": "string",
+          "description": "Event date in Thai format"
+        },
+        "timeRange": {
+          "type": "string",
+          "description": "Event hours"
+        },
+        "room": {
+          "type": "string",
+          "description": "Conference room name"
+        },
+        "floor": {
+          "type": "string",
+          "description": "Floor and building name"
+        },
+        "targetCount": {
+          "type": "number",
+          "description": "Target participants count"
+        },
+        "registeredCount": {
+          "type": "number",
+          "description": "Live registered count incremented upon registration"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "completed", "cancelled"],
+          "description": "Activity status"
+        },
+        "qrToken": {
+          "type": "string",
+          "description": "Security token for dynamic QR verification"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "description": "Soft delete flag"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["activityId", "title", "date", "room", "registeredCount", "createdAt", "updatedAt", "isDeleted"]
+    },
+    "Registration": {
+      "title": "Registration",
+      "description": "Attendee registration document in subcollection activities/{activityId}/registrations/{employeeId}",
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string",
+          "description": "Registered employee ID"
+        },
+        "activityId": {
+          "type": "string",
+          "description": "Activity ID"
+        },
+        "employeeName": {
+          "type": "string",
+          "description": "Full name of attendee"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position of attendee"
+        },
+        "department": {
+          "type": "string",
+          "description": "Department of attendee"
+        },
+        "departmentId": {
+          "type": "string",
+          "description": "Department ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "KKU email of attendee"
+        },
+        "registeredAt": {
+          "type": "string",
+          "description": "Thai formatted timestamp"
+        },
+        "registeredTimestamp": {
+          "type": "string",
+          "description": "ISO timestamp"
+        },
+        "checkInMethod": {
+          "type": "string",
+          "description": "Method of registration (QR Code, Web Portal, Mobile)"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["registered", "attended", "cancelled"],
+          "description": "Registration and attendance status"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "description": "Soft delete flag"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["employeeId", "activityId", "employeeName", "email", "status", "createdAt", "updatedAt", "isDeleted"]
+    }
+  }
+}

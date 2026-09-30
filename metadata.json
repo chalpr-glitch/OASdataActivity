@@ -1,0 +1,6 @@
+{
+  "name": "OAS KKU Kiosk & Attendance",
+  "description": "ระบบเช็กชื่อเข้าห้องประชุมและรายงานสถิติกิจกรรมบุคลากร สำนักบริการวิชาการ มหาวิทยาลัยขอนแก่น (OAS KKU) ด้วย Cloud Firestore NoSQL",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

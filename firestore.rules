@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users collection: /users/{userId} (e.g. employeeId or uid)
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Activities collection: /activities/{activityId}
+    match /activities/{activityId} {
+      allow read: if true;
+      allow write: if true;
+
+      // Subcollection: /activities/{activityId}/registrations/{employeeId}
+      match /registrations/{employeeId} {
+        allow read: if true;
+        // Enforce no-duplicate registration: document must not exist prior to creation
+        allow create: if isValidId(employeeId) &&
+          !exists(/databases/$(database)/documents/activities/$(activityId)/registrations/$(employeeId));
+        allow update, delete: if isValidId(employeeId);
+      }
+    }
+  }
+}
